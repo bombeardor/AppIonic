@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TesteComponent } from './teste/teste.component';
 import { ListaComponent } from './lista/lista.component';
 import { HomePage } from './home/home.page';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent, TesteComponent, ListaComponent, HomePage],
@@ -18,6 +19,7 @@ import { HomePage } from './home/home.page';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
+    Camera,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
