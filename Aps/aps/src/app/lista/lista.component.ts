@@ -93,7 +93,7 @@ async add(TaskList: string){
   console.log(TaskList);
  if(TaskList.trim().length < 1) {
    const toast = await this.toastCtrl.create({
-    message: 'Informe o que deseja fazer!',
+    message: 'Por favor, prencha o campo corretamente',
     duration: 2000,
     position: 'top'
    });
