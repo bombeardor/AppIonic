@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +11,14 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
- 
+
 })
 export class HomePage {
-  imagem21 = "";
+
   tasks: any[] = []    //array de ql tipo;
   constructor(private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController, private toastCtrl: ToastController,
-    ) {
+  ) {
 
     let tasksJson = localStorage.getItem('taskDb');
     if (tasksJson != null) {
@@ -30,7 +30,7 @@ export class HomePage {
     const actionSheet = await this.actionSheetCtrl.create({
       header: "O que deseja fazer?",
       buttons: [{
-        text: task.done ? 'Desmarcar' : 'Marca',
+        text: task.done ? 'Desmarcar' : 'Marcar',
         icon: task.done ? 'radio-button-off' : 'checkmark-circle',
         handler: () => {
           task.done = !task.done;

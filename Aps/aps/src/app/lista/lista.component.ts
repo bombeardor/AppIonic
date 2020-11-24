@@ -27,6 +27,7 @@ export class ListaComponent implements OnInit {
 
   //camera
   tirarFoto() {
+    console.log('kkkkkk')
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
