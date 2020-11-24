@@ -11,37 +11,19 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  providers: [Camera
-  ]
+ 
 })
 export class HomePage {
   imagem21 = "";
   tasks: any[] = []    //array de ql tipo;
   constructor(private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController, private toastCtrl: ToastController,
-    private camera: Camera) {
+    ) {
 
     let tasksJson = localStorage.getItem('taskDb');
     if (tasksJson != null) {
       this.tasks = JSON.parse(tasksJson);
     }
-  }
-
-  tirarFoto() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      let imagem21 = imageData;
-
-    }, (err) => {
-      // Handle error
-      console.log("Camera issue: " + err);
-    });
   }
 
   async openActions(task: any) {
