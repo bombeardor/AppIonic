@@ -1,18 +1,22 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>
-      TaskListl
+      <ion-item color="primary">
+        <ion-img src="assets\Ativo 2.png" alt="Task List" style="width: 40px; height: 40px"></ion-img>
+        <ion-text class="ion-margin-start">
+        TaskList - Seu app de Tarefas</ion-text>
+      </ion-item>
     </ion-title>
   </ion-toolbar>
 </ion-header>
- 
+
 <ion-content>
   <ion-list>
-    <ion-item *ngIf="tasks.length < 1">   
+    <ion-item *ngIf="tasks.length < 1">
       <ion-label text-center text-uppercase>Não há tarefas</ion-label>
     </ion-item>
-      <ion-item-sliding *ngFor="let task of tasks">
-       <ion-item (click)="openActions(task)"> 
+    <ion-item-sliding *ngFor="let task of tasks">
+      <ion-item (click)="openActions(task)">
         <ion-label text-uppercase *ngIf="task.done"> <del>{{task.name}}</del></ion-label>
         <ion-label text-uppercase *ngIf="!task.done">{{task.name}}</ion-label>
         <ion-icon *ngIf="!task.done" slot="start" name="radio-button-off"></ion-icon>
@@ -23,11 +27,11 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-   
+
   <ion-fab vertical="botton" horizontal="end" slot="fixed">
     <ion-fab-button (click)="showAdd()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
+
 </ion-content>

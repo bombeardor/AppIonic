@@ -1,8 +1,60 @@
 <ion-header>
-   <ion-img src="assets\Ativo 2.png" alt="Task List" style="width: 80px; height: 80px"></ion-img>
+   <ion-toolbar color="primary">
+      <ion-title>
+         <ion-item color="primary">
+            <ion-img src="assets\Ativo 2.png" alt="Task List" style="width: 40px; height: 40px"></ion-img>
+            <ion-text class="ion-margin-start">
+               TaskList - Seu app de Tarefas</ion-text>
+         </ion-item>
+      </ion-title>
+   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-   <h1 style="font-size: 30px; color: #ffff;"> Bem Vindo! </h1>
+  
+   <ion-list>
+
+
+
+
+      <ion-list>
+         <ion-list-header>
+            <h1> Aqui você pode:</h1>
+         </ion-list-header>
+
+
+         <ion-item>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <ion-label>
+               <h2>Adicione TarefasRey</h2>
+               <h3>Lembre-se apenas do importante</h3>
+               <p>Você tem o poder de nunca mais esquecer de nada...</p>
+            </ion-label>
+         </ion-item>
+
+         <ion-item>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <ion-label>
+               <h2>Marque como Concluídas</h2>
+               <h3>Ganhe Auto Motivação!!</h3>
+               <p>Termine sua tarefas e rabisque-as da lista...</p>
+            </ion-label>
+         </ion-item>
+
+         <ion-item>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <ion-label>
+               <h2>Coloque imagens</h2>
+               <h3>Ilustre suas ideias!</h3>
+               <p>Deixe tudo mais óbvio e claro com a foto que quiser...</p>
+            </ion-label>
+         </ion-item>
+
+      </ion-list>
+
+
+
+   </ion-list>
+
 
 </ion-content>

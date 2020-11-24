@@ -1,65 +1,87 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+import { Injectable } from '@angular/core';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  providers: [Camera
+  ]
 })
 export class HomePage {
-  tasks : any[] = []    //array de ql tipo;
-  constructor(private actionSheetCtrl : ActionSheetController, private alertCtrl : AlertController, private toastCtrl : ToastController) {
+  imagem21 = "";
+  tasks: any[] = []    //array de ql tipo;
+  constructor(private actionSheetCtrl: ActionSheetController,
+    private alertCtrl: AlertController, private toastCtrl: ToastController,
+    private camera: Camera) {
 
     let tasksJson = localStorage.getItem('taskDb');
-  if (tasksJson != null) {
-    this.tasks = JSON.parse(tasksJson);
-
+    if (tasksJson != null) {
+      this.tasks = JSON.parse(tasksJson);
+    }
   }
 
+  tirarFoto() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      let imagem21 = imageData;
+
+    }, (err) => {
+      // Handle error
+      console.log("Camera issue: " + err);
+    });
   }
 
-
-  
-  async openActions(task: any){
+  async openActions(task: any) {
     const actionSheet = await this.actionSheetCtrl.create({
       header: "O que deseja fazer?",
       buttons: [{
         text: task.done ? 'Desmarcar' : 'Marca',
         icon: task.done ? 'radio-button-off' : 'checkmark-circle',
-        handler: ()=> {
+        handler: () => {
           task.done = !task.done;
           this.updateLocalStorage();
         }
       }
-    
-     , {
-       text: 'Cancelar',
-       icon: 'close',
-       role: 'cancel',
-       handler: () => {
-         console.log('Cancel cklicked');
-       }
-     }]
-  });
-  await actionSheet.present();
- 
-  }
-     
- delete(task: any) {
-   this.tasks  = this.tasks.filter(taskArray => task != taskArray);
 
-   this.updateLocalStorage();
- } 
-    updateLocalStorage() {
-      localStorage.setItem('taskDb', JSON.stringify(this.tasks));
-    }
-    
- 
-    async showAdd() {
-      const alert = await this.alertCtrl.create({
+        , {
+        text: 'Cancelar',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel cklicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  delete(task: any) {
+    this.tasks = this.tasks.filter(taskArray => task != taskArray);
+
+    this.updateLocalStorage();
+  }
+  updateLocalStorage() {
+    localStorage.setItem('taskDb', JSON.stringify(this.tasks));
+  }
+
+  async showAdd() {
+    const alert = await this.alertCtrl.create({
       header: 'O que deseja fazer?',
       inputs: [
-        { 
+        {
           name: 'taskTaskList',
           type: 'text',
           placeholder: 'Comprar pão'
@@ -67,13 +89,13 @@ export class HomePage {
       ],
       buttons: [
         {
-           text: 'Cancelar',
-           role: 'cancel',
-           cssClass: 'secondary',
-           handler: () => {
-             console.log(this.tasks);
-             console.log('clicked cancel')
-           }
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log(this.tasks);
+            console.log('clicked cancel')
+          }
         },
         {
           text: 'Adicionar',
@@ -84,27 +106,27 @@ export class HomePage {
         }
       ]
     });
-     await alert.present();
- }
+    await alert.present();
+  }
 
 
-async add(TaskList: string){
-  console.log(TaskList);
- if(TaskList.trim().length < 1) {
-   const toast = await this.toastCtrl.create({
-    message: 'Informe o que deseja fazer!',
-    duration: 2000,
-    position: 'top'
-   });
-   toast.present();
-   return;
-   }
-  
-   let task = { name: `${TaskList}`, done: false};
-   this.tasks.push(task);
-   this.updateLocalStorage();
-}
-   
+  async add(TaskList: string) {
+    console.log(TaskList);
+    if (TaskList.trim().length < 1) {
+      const toast = await this.toastCtrl.create({
+        message: 'Informe o que deseja fazer!',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present();
+      return;
+    }
+
+    let task = { name: `${TaskList}`, done: false };
+    this.tasks.push(task);
+    this.updateLocalStorage();
+  }
+
 
 }
 
