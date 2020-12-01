@@ -6,6 +6,7 @@ import { ListaComponent } from './lista/lista.component';
 import { LoginPage } from './login/login.page';
 import { TesteComponent } from './teste/teste.component';
 import { CadastroPage } from './cadastro/cadastro.page';
+import { FotosPage } from './fotos/fotos.page';
 
 const routes: Routes = [
   {
@@ -16,8 +17,11 @@ const routes: Routes = [
       { path: 'home', component: HomePage },
       { path: '', component: LoginPage },
       { path: 'cadastro', component: CadastroPage },
+      { path: 'fotos', component: FotosPage },
     ]
   },
+
+
 ];
 
 @NgModule({
