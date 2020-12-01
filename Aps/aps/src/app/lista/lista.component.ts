@@ -1,57 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',
   styleUrls: ['./lista.component.scss'],
-  providers: [Camera
-  ]
+ 
 })
 export class ListaComponent implements OnInit {
   tasks: any[] = []    //array de ql tipo;
-  imagem21 = ""; //imagem
+
   constructor(private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController, private toastCtrl: ToastController,
-    private camera: Camera) {
+    ) {
 
     let tasksJson = localStorage.getItem('taskDb');
     if (tasksJson != null) {
       this.tasks = JSON.parse(tasksJson);
-
     }
-
   }
-
-
-  //camera
-  tirarFoto() {
-    console.log('kkkkkk')
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      let imagem21 = imageData;
-
-    }, (err) => {
-      // Handle error
-      console.log("Camera issue: " + err);
-    });
-  }
-
-
-
-
 
   ngOnInit() { }
-
-
-
   async openActions(task: any) {
     const actionSheet = await this.actionSheetCtrl.create({
       header: "O que deseja fazer?",
