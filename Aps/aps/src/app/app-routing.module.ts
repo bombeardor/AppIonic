@@ -3,7 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePageModule } from './home/home.module';
 import { HomePage } from './home/home.page';
 import { ListaComponent } from './lista/lista.component';
+import { LoginPage } from './login/login.page';
 import { TesteComponent } from './teste/teste.component';
+
 
 const routes: Routes = [
   {
@@ -18,9 +20,10 @@ const routes: Routes = [
         path: 'home',
         component: HomePage,
       },
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '',  component: LoginPage},
     ]
-  },  {
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
