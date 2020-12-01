@@ -1,5 +1,13 @@
-
 <ion-content>
+
+  <ion-item class="ion-text-center">
+    <ion-label>
+      Gerencie suas tarefas
+    </ion-label>
+  </ion-item>
+
+
+
   <ion-list>
     <ion-item *ngIf="tasks.length < 1">
       <ion-label text-center text-uppercase>Não há tarefas</ion-label>
@@ -23,12 +31,12 @@
     </ion-fab-button>
   </ion-fab>
 
-  
+
   <ion-item>
-    <ion-img *ngIf="imagem21"[src]="imagem21" alt=""> </ion-img>
+    <ion-img *ngIf="imagem21" [src]="imagem21" alt=""> </ion-img>
     <ion-button (click)="tirarFoto()">Tirar Foto</ion-button>
 
- </ion-item>
+  </ion-item>
 
 
 </ion-content>
