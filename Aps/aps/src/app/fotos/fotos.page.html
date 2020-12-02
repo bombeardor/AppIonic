@@ -8,49 +8,20 @@
     </ion-item>
   </ion-card>
 
+  <ion-fab-button (click)="photoService.tirarFoto()">
+    <ion-icon name="camera"></ion-icon>
+  </ion-fab-button>
+
+
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <img src="https://github.com/aleroberto.png" />
+      <ion-col size="6" *ngFor="let photo of photoService.photos">
+        <img [src]="photo.data" />
       </ion-col>
-      <ion-col>
-        <img src="https://github.com/aleroberto.png" />
-      </ion-col>
-      <ion-col>
-        <img src="https://github.com/aleroberto.png" />
-      </ion-col>
-
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <img src="https://github.com/aleroberto.png" />
-      </ion-col>
-      <ion-col>
-        <img src="https://github.com/aleroberto.png" />
-      </ion-col>
-      <ion-col>
-        <img src="https://github.com/aleroberto.png" />
-      </ion-col>
-
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <img src="https://github.com/aleroberto.png" />
-      </ion-col>
-      <ion-col>
-        <img src="https://github.com/aleroberto.png" />
-      </ion-col>
-      <ion-col>
-        <img src="https://github.com/aleroberto.png" />
-      </ion-col>
-
     </ion-row>
   </ion-grid>
 
-  
-  <ion-item>
-       <ion-button (click)="tirarFoto()">Tirar Foto</ion-button>
-  </ion-item>
+
+
 
 </ion-content>
